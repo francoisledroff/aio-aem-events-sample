@@ -37,7 +37,7 @@
     <description>All content package for My Site</description>
 
     <properties>
-        <aio-aem-events.version>0.0.24</aio-aem-events.version>
+        <aio-aem-events.version>0.0.26</aio-aem-events.version>
     </properties>
 
 
@@ -59,6 +59,12 @@
                     <!-- skip sub package validation for now as some vendor packages like CIF apps will not pass -->
                     <skipSubPackageValidation>true</skipSubPackageValidation>
                     <embeddeds>
+                        <embedded>
+                            <groupId>com.mysite</groupId>
+                            <artifactId>mysite.aio.config</artifactId>
+                            <type>zip</type>
+                            <target>/apps/mysite-packages/application/install</target>
+                        </embedded>
                         <embedded>
                             <groupId>com.adobe.aio.aem</groupId>
                             <artifactId>aio-aem-events</artifactId>
@@ -166,6 +172,12 @@
     <!-- D E P E N D E N C I E S                                                -->
     <!-- ====================================================================== -->
     <dependencies>
+        <dependency>
+            <groupId>com.mysite</groupId>
+            <artifactId>mysite.aio.config</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
         <dependency>
             <groupId>com.adobe.aio.aem</groupId>
             <artifactId>aio-aem-events</artifactId>

@@ -28,6 +28,8 @@
 
     <modules>
         <module>all</module>
+        <module>aio.config</module>
+        <module>ui.apps.structure</module>
     </modules>
 
     <properties>
