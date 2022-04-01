@@ -37,7 +37,7 @@
     <description>All content package for My Site</description>
 
     <properties>
-        <aio-aem-events.version>0.0.26</aio-aem-events.version>
+        <aio-aem-events.version>0.0.28</aio-aem-events.version>
     </properties>
 
 
