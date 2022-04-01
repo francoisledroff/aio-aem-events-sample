@@ -104,15 +104,16 @@ your aem child process to inherit.
     export aio_ims_org_id="<your Adobe Developer Console IMS Organization ID (project.org.ims_org_id)>"
     export aio_workspace_id="<your Adobe Developer Console workspace Id (project.workspace.id)>"
     export aio_credential_id="<your Adobe Developer Console jwt credential id (project.workspace.details.credentials[i].id)>"
-    export aio_client_secret="<your Adobe Developer Console jwt credential client secret (project.workspace.details.credentials[i].jwt.client_secret)>"
     export aio_api_key="<your Adobe Developer Console jwt credential API Key (or Client ID) (project.workspace.details.credentials[i].jwt.client_id>"
     export aio_meta_scopes="<your Adobe Developer Console jwt credential metascopes (project.workspace.details.credentials[i].jwt.meta_scopes)>"
     export aio_technical_account_id="<your Adobe Developer Console jwt credential technical account id (project.workspace.details.credentials[i].jwt.technical_account_id)>"
+    export aio_client_secret="<your Adobe Developer Console jwt credential client secret (project.workspace.details.credentials[i].jwt.client_secret)>"
     export aio_encoded_pkcs8="<your base64 encoded PKCS8 private key associated with the public key you added in your Adobe Developer Console>
     
 ### AEM as a Cloud Service configuration
 
-For more details read the [Configuring OSGi for Adobe Experience Manager as a Cloud Service guide](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi.html%3Flang%3Den#secret-configuration-values)).
+Read the [Cloud Manager environment variables guide](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/environment-variables.html?lang=en#add-variables).
+
 
 
 ## How to build and deploy
@@ -133,10 +134,7 @@ Or alternatively
 
     mvn clean install -PautoInstallSinglePackage -Daem.port=4503
 
-To deploy it on your AEM as a Cloud Service, confer [AEM Cloud Manager deployment guide](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/deploy-code.html?lang=en)
-
-## Test Drive
-
+To deploy it on your AEM as a Cloud Service, read the [AEM Cloud Manager deployment guide](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/deploy-code.html?lang=en)
 
 
 ## Maven settings
