@@ -37,9 +37,8 @@
     <description>All content package for My Site</description>
 
     <properties>
-        <aio-aem-events.version>0.0.36</aio-aem-events.version>
+        <aio-aem-events.version>0.0.38</aio-aem-events.version>
     </properties>
-
 
     <!-- ====================================================================== -->
     <!-- B U I L D   D E F I N I T I O N                                        -->
@@ -71,6 +70,23 @@
                             <type>zip</type>
                             <target>/apps/mysite-packages/application/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>com.adobe.cq</groupId>
+                            <artifactId>core.wcm.components.content</artifactId>
+                            <type>zip</type>
+                            <target>/apps/mysite-vendor-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobe.cq</groupId>
+                            <artifactId>core.wcm.components.core</artifactId>
+                            <target>/apps/mysite-vendor-packages/application/install</target>
+                        </embedded>
+                        <embedded>
+                            <groupId>com.adobe.cq</groupId>
+                            <artifactId>core.wcm.components.config</artifactId>
+                            <type>zip</type>
+                            <target>/apps/mysite-vendor-packages/application/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -91,18 +107,6 @@
                         <phase>initialize</phase>
                         <goals>
                             <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.adobe.aem</groupId>
-                <artifactId>aemanalyser-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>aem-analyser</id>
-                        <goals>
-                            <goal>project-analyse</goal>                           
                         </goals>
                     </execution>
                 </executions>
@@ -182,6 +186,17 @@
             <groupId>com.adobe.aio.aem</groupId>
             <artifactId>aio-aem-events</artifactId>
             <version>${aio-aem-events.version}</version>
+            <classifier>aem65</classifier>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.cq</groupId>
+            <artifactId>core.wcm.components.content</artifactId>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.adobe.cq</groupId>
+            <artifactId>core.wcm.components.config</artifactId>
             <type>zip</type>
         </dependency>
     </dependencies>

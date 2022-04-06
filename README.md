@@ -2,100 +2,54 @@
 
 This sample (working) project acts as a guide 
 to help you get started with [`aio-aem-events`](https://github.com/adobe/aio-lib-java/tree/main/aem/aio_aem_events)
+on AEM 6.5.
+
+You can also decide to manually install the `aio-aem-events` `zip` package, don't forget to
+* pick `aem65` classifier when downloading it from maven central
+* once the package deployed, add the necessary OSGI configurations (see below)
 
 ## Making-of
 
-Here are the few steps to redo it from scratch:
+Here are the few steps to build this repo from scratch:
 
 ### Start with AEM project Archetype
 
 Generate your project using [AEM Project Archetype](https://experienceleague.adobe.com/docs/experience-manager-core-components/using/developing/archetype/overview.html?lang=en
 ), with the following command line :
 
-    mvn -B archetype:generate \    
-    -D archetypeGroupId=com.adobe.aem \
-    -D archetypeArtifactId=aem-project-archetype \
-    -D archetypeVersion=36 \
-    -D appTitle="My Site" \
-    -D appId="mysite" \
-    -D groupId="com.mysite"
+    mvn -B archetype:generate -D archetypeGroupId=com.adobe.aem -D archetypeArtifactId=aem-project-archetype -D aemVersion="6.5.0" -D archetypeVersion=36 -D appTitle="My Site" -D appId="mysite" -D groupId="com.mysite"
 
 Optionally (we did it to keep the sample easy to manage and understand) remove the unnecessary modules
 * remove all modules but `all` and `ui.apps.structure`
 * remove their reference from the root `pom.xml` and `all/pom.xml` files
 
-### Add a new module holding `aio-aem-events` Workspace configuration : `aio.config`
-
-[`aio-aem-events`](https://github.com/adobe/aio-lib-java/tree/main/aem/aio_aem_events) 
-expects a [workspace OSGI configuration](https://github.com/adobe/aio-lib-java/tree/main/aem/core_aem#expected-workspace-osgi-configuration)
-defined: for this add a new `container` package named `aio.config` to hold this configuration.
-
-If you target AEM as a Cloud Service, we strongly encourage the use of AEM Cloud Manager `secret` and `env` environment variables
-(see [Configuring OSGi for Adobe Experience Manager as a Cloud Service](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi.html%3Flang%3Den#secret-configuration-values)).
-
-Your OSGI configuration could look like this:
-
-    {
-        "aio.consumer.org.id": "$[env:aio_consumer_org_id]",
-        "aio.ims.org.id": "$[env:aio_ims_org_id]",
-        "aio.meta.scopes": "$[env:aio_meta_scopes]",
-        "aio.project.id": "$[env:projectid]",
-        "aio.workspace.id": "$[env:aio_workspace_id]",
-        "aio.api.key": "$[env:aio_api_key]",
-        "aio.credential.id": "$[env:aio_credential_id]",
-        "aio.technical.account.id": "$[env:aio_technical_account_id]",
-        "aio.client.secret": "$[secret:aio_client_secret]",
-        "aio.encoded.pkcs8": "$[secret:aio_encoded_pkcs8]"
-    }
-
-To keep this project simple to use locally, we provide a [sample Workspace OSGI configuration](aio.config/src/main/content/jcr_root/apps/mysite/osgiconfig/config/com.adobe.aio.aem.workspace.internal.WorkspaceSupplierImpl.cfg.json)
-leveraging system environment variables only.
-
-### Add `aio-aem-events` and `aio.config` as embedded packages
+### Add `aio-aem-events` as embedded package
 
 Now we have the configuration ready, the last step is to
 add `aio-aem-events` and `aio.config` as an Embedded/Sub packages.
 
 For this edit `all/pom.xml` file, and
 * set `aio-aem-events.version` in the `properties` section to use the latest [version from maven central](https://repo1.maven.org/maven2/com/adobe/aio/aem/aio-aem-events)
-* add `aio-aem-events` and `aio.config` in the `dependencies` section
+* add `aio-aem-events` in the `dependencies` section
 
-      
-      <dependency>
-         <groupId>com.mysite</groupId>
-         <artifactId>mysite.aio.config</artifactId>
-         <version>${project.version}</version>
-         <type>zip</type>
-      </dependency>
+
       <dependency>
           <groupId>com.adobe.aio.aem</groupId>
           <artifactId>aio-aem-events</artifactId>
           <version>${aio-aem-events.version}</version>
+          <classifier>aem65</classifier>
           <type>zip</type>
       </dependency>
 
-* add `aio-aem-events` and `aio.config` as an Embedded/Sub packages, in the `filevault-package-maven-plugin` `embedded` `configuration` section:
+* add `aio-aem-events` as an Embedded/Sub package, in the `filevault-package-maven-plugin` `embedded` `configuration` section:
 
 
-      <embedded>
-           <groupId>com.mysite</groupId>
-           <artifactId>mysite.aio.config</artifactId>
-           <type>zip</type>
-           <target>/apps/mysite-packages/application/install</target>
-      </embedded>
       <embedded>
            <groupId>com.adobe.aio.aem</groupId>
            <artifactId>aio-aem-events</artifactId>
            <type>zip</type>
            <target>/apps/mysite-packages/application/install</target>
       </embedded>
- 
-## Set your Environment Variables
-
-As detailed above, this sample is leveraging environment variables, you will need to define these in your system.
-* for local configuration, you may use the `export` bash command to load the system environment variables, for
-your aem child process to inherit.
-* for AEM as a Cloud Service configuration read the [Cloud Manager environment variables guide](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/environment-variables.html?lang=en#add-variables).
 
 ## Build and deploy
 
@@ -117,9 +71,12 @@ Or alternatively
 
 To deploy it on your AEM as a Cloud Service, read the [AEM Cloud Manager deployment guide](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/deploy-code.html?lang=en)
 
+## Add OSGI configurations 
 
-## Maven settings
+[`aio-aem-events`](https://github.com/adobe/aio-lib-java/tree/main/aem/aio_aem_events)
+* expects a `Workspace` OSGI configuration defined see [aio-aem-core](https://github.com/adobe/aio-lib-java/tree/main/aem/core_aem) docs more more details.
+* leverages `AEM Link Externalizer` Configuration see [aio-aem-events-mgmt](https://github.com/adobe/aio-lib-java/tree/main/aem/events_mgmt_aem) docs more more details.
 
-The project comes with the auto-public repository configured. To setup the repository in your Maven settings, refer to:
+## Status Checks
 
-    http://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html
+Verify your set up using [aio_aem_events Status Check endpoints](https://github.com/adobe/aio-lib-java/tree/main/aem/aio_aem_events#status-checks)
