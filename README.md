@@ -39,7 +39,7 @@ Your OSGI configuration could look like this:
         "aio.consumer.org.id": "$[env:aio_consumer_org_id]",
         "aio.ims.org.id": "$[env:aio_ims_org_id]",
         "aio.meta.scopes": "$[env:aio_meta_scopes]",
-        "aio.project.id": "$[env:projectid]",
+        "aio.project.id": "$[env:aio_project_id]",
         "aio.workspace.id": "$[env:aio_workspace_id]",
         "aio.api.key": "$[env:aio_api_key]",
         "aio.credential.id": "$[env:aio_credential_id]",
