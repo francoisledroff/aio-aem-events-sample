@@ -48,8 +48,7 @@ Your OSGI configuration could look like this:
         "aio.encoded.pkcs8": "$[secret:aio_encoded_pkcs8]"
     }
 
-To keep this project simple to use locally, we provide a [sample Workspace OSGI configuration](aio.config/src/main/content/jcr_root/apps/mysite/osgiconfig/config/com.adobe.aio.aem.workspace.internal.WorkspaceSupplierImpl.cfg.json)
-leveraging system environment variables only.
+Confer our [sample Workspace OSGI configuration](aio.config/src/main/content/jcr_root/apps/mysite/osgiconfig/config/com.adobe.aio.aem.workspace.internal.WorkspaceSupplierImpl.cfg.json)
 
 ### Add `aio-aem-events` and `aio.config` as embedded packages
 
