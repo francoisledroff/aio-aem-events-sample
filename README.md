@@ -17,16 +17,14 @@ Here are the few steps to build this repo from scratch:
 Generate your project using [AEM Project Archetype](https://experienceleague.adobe.com/docs/experience-manager-core-components/using/developing/archetype/overview.html?lang=en
 ), with the following command line :
 
-    mvn -B archetype:generate -D archetypeGroupId=com.adobe.aem -D archetypeArtifactId=aem-project-archetype -D aemVersion="6.5.0" -D archetypeVersion=36 -D appTitle="My Site" -D appId="mysite" -D groupId="com.mysite"
+    mvn -B archetype:generate -D archetypeGroupId=com.adobe.aem 
+        -D archetypeArtifactId=aem-project-archetype 
+        -D aemVersion="6.5.0" -D archetypeVersion=36 
+        -D appTitle="My Site" -D appId="mysite" -D groupId="com.mysite"
 
-Optionally (we did it to keep the sample easy to manage and understand) remove the unnecessary modules
-* remove all modules but `all` and `ui.apps.structure`
-* remove their reference from the root `pom.xml` and `all/pom.xml` files
 
-### Add `aio-aem-events` as embedded package
+### Add `aio-aem-events` as an embedded package
 
-Now we have the configuration ready, the last step is to
-add `aio-aem-events` and `aio.config` as an Embedded/Sub packages.
 
 For this edit `all/pom.xml` file, and
 * set `aio-aem-events.version` in the `properties` section to use the latest [version from maven central](https://repo1.maven.org/maven2/com/adobe/aio/aem/aio-aem-events)
