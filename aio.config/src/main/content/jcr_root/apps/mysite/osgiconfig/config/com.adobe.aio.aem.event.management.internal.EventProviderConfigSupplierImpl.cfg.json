@@ -1,4 +1,4 @@
 {
   "aio.provider.description": "aio-aem-events-sample project",
-  "event.delivery.format": "adobe_io"
+  "event.delivery.format": "cloud_events_v1"
 }

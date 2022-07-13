@@ -1,3 +1,0 @@
-{
-  "aio.publish.url": "$[env:aio_publish_url]"
-}

@@ -1,3 +1,0 @@
-{
-  "aio.api.management.url": "$[env:aio_api_url]"
-}
