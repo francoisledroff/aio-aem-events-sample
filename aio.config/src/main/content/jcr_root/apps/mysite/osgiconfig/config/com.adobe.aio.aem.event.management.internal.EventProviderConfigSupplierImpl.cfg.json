@@ -1,4 +1,3 @@
 {
-  "aio.provider.description": "aio-aem-events-sample project",
-  "event.delivery.format": "adobe_io"
+  "aio.provider.description": "aio-aem-events-sample project"
 }
