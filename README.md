@@ -3,6 +3,9 @@
 This sample (working) project acts as a guide 
 to help you get started with [`aio-aem-events`](https://github.com/adobe/aio-lib-java/tree/main/aem/aio_aem_events)
 
+Note that to run AEMaaCS locally you can download the sdk at
+https://experience.adobe.com/#/downloads/content/software-distribution/en/aemcloud.html?fulltext=aem*+sdk*
+
 ## Making-of
 
 Here are the few steps to redo it from scratch:
@@ -44,8 +47,8 @@ Your OSGI configuration could look like this:
         "aio.api.key": "$[env:aio_api_key]",
         "aio.credential.id": "$[env:aio_credential_id]",
         "aio.technical.account.id": "$[env:aio_technical_account_id]",
-        "aio.client.secret": "$[secret:aio_client_secret]",
-        "aio.encoded.pkcs8": "$[secret:aio_encoded_pkcs8]"
+        "aio.client.secret": "$[env:aio_client_secret]",
+        "aio.encoded.pkcs8": "$[env:aio_encoded_pkcs8]"
     }
 
 Confer our [sample Workspace OSGI configuration](aio.config/src/main/content/jcr_root/apps/mysite/osgiconfig/config/com.adobe.aio.aem.workspace.internal.WorkspaceSupplierImpl.cfg.json)
